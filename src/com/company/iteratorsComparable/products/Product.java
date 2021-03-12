@@ -1,6 +1,6 @@
-package com.company.iteratorsComparable;
+package com.company.iteratorsComparable.products;
 
-public abstract class Product implements Comparable<Product>{
+public abstract class Product implements Comparable<Product> {
     private String name;
     private int length;
     private int width;
@@ -16,15 +16,6 @@ public abstract class Product implements Comparable<Product>{
     @Override
     public int compareTo(Product o) {
         return this.name.compareTo(o.getName());
-    }
-
-    @Override
-    public String toString() {
-        return  "name='" + name + '\'' +
-                ", length=" + length +
-                ", width=" + width +
-                ", weight=" + weight +
-                '}';
     }
 
     public String getName() {
