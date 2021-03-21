@@ -5,19 +5,32 @@ import java.util.*;
 public class ZooClub {
 
     private Map<Person, List<Animal>> personAnimals;
+    private Print output;
 
     public ZooClub() {
         personAnimals = new HashMap<>();
+        output = new Print() {
+            @Override
+            public void print(String message) {
+                System.out.println(message);
+            }
+        };
     }
+    public ZooClub(Print print) {
+        personAnimals = new HashMap<>();
+        this.output = print;
+    }
+
 
     public void addPerson(Person person){
         if(personAnimals.containsKey(person)) {
-            System.out.println("This person is in the club.");
+            output.print("This person is in the club.");
         }
         else {
             personAnimals.put(person, new ArrayList<>());
-            System.out.println("Person " + person + " added.");
+            output.print("Person " + person + " added.");
         }
+
     }
 
     public void addAnimal(Person person, Animal animal){
@@ -27,40 +40,40 @@ public class ZooClub {
         else {
             personAnimals.put(person, new ArrayList<>(Arrays.asList(animal)));
         }
-        System.out.println("Animal " + animal + " added.");
+        output.print("Animal " + animal + " added.");
     }
 
     public void removeAnimal(Person person, Animal animal){
         if(personAnimals.containsKey(person)){
             if(personAnimals.get(person).contains(animal)) {
                 personAnimals.get(person).remove(animal);
-                System.out.println("Animal " + animal + " removed.");
+                output.print("Animal " + animal + " removed.");
             }
             else {
-                System.out.println("Animal " + animal + " is not in the list.");
+                output.print("Animal " + animal + " is not in the list.");
             }
         }
         else {
-            System.out.println("Person " + person + " in not in the list.");
+            output.print("Person " + person + " in not in the list.");
         }
     }
 
     public void removePerson(Person person){
         if(personAnimals.containsKey(person)){
             personAnimals.remove(person);
-            System.out.println("Person " + person + " removed.");
+            output.print("Person " + person + " removed.");
         }
         else {
-            System.out.println("Person " + person + " in not in the list.");
+            output.print("Person " + person + " in not in the list.");
         }
     }
 
     public void printClub(){
-        System.out.println();
+        String message = "\n";
         for(var entry : personAnimals.entrySet()){
-            System.out.println(entry.getKey() + " :: " + entry.getValue());
+            message += entry.getKey() + " :: " + entry.getValue() + "\n";
         }
-        System.out.println();
+        output.print(message);
     }
 
     public Map<Person, List<Animal>> getPersonAnimals() {
