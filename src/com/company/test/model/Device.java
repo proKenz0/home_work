@@ -1,4 +1,4 @@
-package com.company.test;
+package com.company.test.model;
 
 
 public class Device {
@@ -17,7 +17,7 @@ public class Device {
 
     @Override
     public String toString() {
-        return "Device{" +
+        return "\nDevice{" +
                 "serialNumbar=" + serialNumbar +
                 ", brand='" + brand + '\'' +
                 ", info='" + info + '\'' +
